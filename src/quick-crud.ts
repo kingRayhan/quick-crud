@@ -125,4 +125,4 @@ export const destroy = async (
 	return doc
 }
 
-export default { index, show, destroy, update }
+export default { index, show, destroy, update, store }
