@@ -2,6 +2,7 @@ import DataHelper from './dataHelper'
 import { removeUndefinedKeys } from './helpers'
 import * as mongoose from 'mongoose'
 import { PaginationOptions } from './interfaces'
+import { QuickCrudException } from './QuickCrudError'
 
 /**
  * Quick crud resource PaginationOptions
@@ -97,7 +98,7 @@ export const update = async (
 	})
 
 	if (!doc) {
-		throw new Error('Resource not found')
+		throw new QuickCrudException('Resource not found')
 	}
 	// update that
 	return doc
@@ -117,10 +118,9 @@ export const destroy = async (
 ) => {
 	// check if it exists
 	let doc = await Model.findOne(where)
-	if (!doc) throw new Error('Resource not found')
+	if (!doc) throw new QuickCrudException('Resource not found')
 
 	await doc.delete()
 
-	// update that
 	return doc
 }
