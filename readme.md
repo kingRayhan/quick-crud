@@ -183,5 +183,5 @@ qc.destroy(User, {
 
 ```js
 // Exception
-UnhandledPromiseRejectionWarning: Error: Resource not found
+UnhandledPromiseRejectionWarning: QuickCrudException: Resource not found
 ```
