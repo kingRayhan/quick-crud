@@ -1,6 +1,6 @@
 {
 	"name": "quick-crud",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"description": "A quick mongoose crud helper",
 	"main": "dist/quick-crud.js",
 	"scripts": {
@@ -14,6 +14,9 @@
 		"name": "kingRayhan",
 		"email": "me@rayhan.info",
 		"url": "https://rayhan.info"
+	},
+	"repository": {
+		"url": "https://github.com/kingRayhan/quick-crud"
 	},
 	"license": "ISC",
 	"devDependencies": {

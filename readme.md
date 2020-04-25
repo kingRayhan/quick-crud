@@ -1,8 +1,8 @@
 # Quick crud
 
-An easy CRUD operation based on Factory pattern with Mongoose. There are four CRUD operations we can do:
+An easy CRUD operation based on Factory pattern with [Mongoose](https://mongoosejs.com). There are four CRUD operations we can do:
 
-- **`index(Model, populateOptions ,paginationOptions)`** : Finds the documents from the collection. You can also get `paginationsOptions` where you can paginate your data and `populateOptions` where you can populate the schema properties seperated by space <br>
+- **`index(Model, populateOptions ,paginationOptions)`** : Finds the documents from the collection. You can also get `paginationsOptions` where you can paginate your data and `populateOptions` where you can populate the schema properties <br>
   `paginationOptions` can get three parameters:
   - `limit:number` - Resource count to show. Default is 10
   - `page:number` - Pagination page number. Default is 1.
@@ -17,7 +17,7 @@ An easy CRUD operation based on Factory pattern with Mongoose. There are four CR
 ### Store
 
 ```js
-import qc from 'quick-crud'
+const qc = require('quick-crud')
 
 qc.store(UserModel, {
 	name: 'John',
@@ -43,7 +43,7 @@ Fetch all resources with pagination
 **Fetch all users**
 
 ```js
-import qc from 'quick-crud'
+const qc = require('quick-crud')
 
 qc.index(UserModel).then((doc) => {
 	console.log(doc)
@@ -78,7 +78,7 @@ qc.index(UserModel).then((doc) => {
 **Fetch all posts with user polulation**
 
 ```js
-import qc from 'quick-crud'
+const qc = require('quick-crud')
 
 qc.index(PostModel, 'user', {
 	page: 2,
@@ -131,6 +131,8 @@ qc.index(PostModel, 'user', {
 **Update a post by id**
 
 ```js
+const qc = require('quick-crud')
+
 qc.update(
 	Post,
 	{ _id: 'xxxx' },
@@ -147,7 +149,7 @@ qc.update(
     _id: 'xxxx',
     title: 'title updated',
     body: 'example body 10',
-    user: 5ea3cf889af8292b1c6c381e,
+    user: 'xxxx',
     __v: 0
 }
 ```
@@ -157,6 +159,8 @@ qc.update(
 **Delete a user with username**
 
 ```js
+const qc = require('quick-crud')
+
 qc.destroy(User, {
 	username: 'newusername'
 }).then((doc) => {
