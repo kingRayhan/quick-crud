@@ -2,15 +2,36 @@
 
 An easy CRUD operation based on Factory pattern with [Mongoose](https://mongoosejs.com). There are four CRUD operations we can do:
 
-- **`index(Model, populateOptions ,paginationOptions)`** : Finds the documents from the collection. You can also get `paginationsOptions` where you can paginate your data and `populateOptions` where you can populate the schema properties <br>
-  `paginationOptions` can get three parameters:
-  - `limit:number` - Resource count to show. Default is 10
-  - `page:number` - Pagination page number. Default is 1.
-  - `sort:string` - MongoDB property sort key. Default is `'-createdAt'`
+- **`index(Model, where, populateOptions, paginationOptions)`** : Fetch all documents with pagination.
+
+  - `Model` - Mongoose model.
+  - `where` - MongoDB filter object.
+  - `populateOptions` - Mongoose population object/string.
+  - `paginationOptions` can get three parameters. 
+  	- `limit:number` - Resource count to show. Default is 10 
+	- `page:number` - Pagination page number. Default is 1. 
+	- `sort:string` - MongoDB property sort key. Default is `'-createdAt'`
+
 - **`store(Model, data)`** - You can create a doc and store it to MongoDB.
-- **`show(Model, where, populationOptions)`**:You can get the data by filtering the properties. `populationOptions` : schema properties seperated by space
+	- `Model` - Mongoose model.
+	- `data` - An object of data to store in MongoDB based on Mongoose Schema
+
+- **`show(Model, where, populationOptions)`**: Fetch a single document via filter key.
+  - `Model` - Mongoose model.
+  - `where` - MongoDB filter object.
+  - `populateOptions` - Mongoose population object/string.
+
 - **`update(Model, where, data)`** - updates the first document that matches `where`. `data` is the object where you want to update the data.
+  - `Model` - Mongoose model.
+  - `where` - MongoDB filter object.
+  - `data` - An object of data to update that matches with where filter key(s).
+
 - **`destroy(Model, where)`** - Deletes the first documents that matches `where` from the collection. it returns the document that has been deleted.
+  - `Model` - Mongoose model.
+  - `where` - MongoDB filter object.
+- **`destroyAll(Model, where)`** - Deletes all documents that matches `where` from the collection.
+  - `Model` - Mongoose model.
+  - `where` - MongoDB filter object.
 
 ## Examples
 
@@ -80,10 +101,10 @@ qc.index(UserModel).then((doc) => {
 ```js
 const qc = require('quick-crud')
 
-qc.index(PostModel, 'user', {
+qc.index(PostModel, {}, {
 	page: 2,
 	limit: 5
-}).then((doc) => {
+} , 'user').then((doc) => {
 	console.log(doc)
 })
 ```
@@ -125,6 +146,46 @@ qc.index(PostModel, 'user', {
 	]
 }
 ```
+
+**Fetch all posts those are published**
+```js
+qc.index(PostModel, { published: true }, {
+	page: 2,
+	limit: 5
+}).then((doc) => {
+	console.log(doc)
+})
+```
+
+**Response**
+```js
+{
+  currentPage: 1,
+  pageCount: 1,
+  resourceCount: 3,
+  data: [
+    {
+      _id: 'xxxx',
+      title: 'post1',
+      published: true,
+      __v: 0
+    },
+    {
+      _id: 'xxxx',
+      title: 'post1',
+      published: true,
+      __v: 0
+    },
+    {
+      _id: 'xxxx',
+      title: 'post1',
+      published: true,
+      __v: 0
+    }
+  ]
+}
+```
+
 
 ### Update
 
