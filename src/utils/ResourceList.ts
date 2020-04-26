@@ -1,6 +1,6 @@
 import { PaginationOptions } from './interfaces'
 
-class DataHelper {
+class ResourceList {
 	private query: any
 	private paginationOptions: PaginationOptions
 	private currentPage: number
@@ -40,4 +40,4 @@ class DataHelper {
 	}
 }
 
-export default DataHelper
+export default ResourceList

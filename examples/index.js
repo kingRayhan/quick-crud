@@ -1,7 +1,12 @@
-const qc = require('quick-crud')
 const mongoose = require('mongoose')
+// const index = require('../dist/index')
+// const destroy = require('../dist/destroy')
+// const show = require('../dist/show')
+// const store = require('../dist/store')
+// const update = require('../dist/update')
+const qc = require('../dist/quick-crud')
 
-let dbURL = ''
+// let dbURL = 'mongodb://rayhan:rayhan123@ds253284.mlab.com:53284/blogapi'
 
 mongoose.connect(dbURL, {
 	useUnifiedTopology: true,
@@ -14,42 +19,44 @@ const userScehama = new mongoose.Schema({
 	name: String,
 	username: String
 })
-const User = mongoose.model('User', userScehama)
+const UserModel = mongoose.model('User', userScehama)
 
 const postSchema = new mongoose.Schema({
 	title: String,
 	body: String,
+	published: Boolean,
 	user: {
 		type: mongoose.SchemaTypes.ObjectId,
 		ref: 'User'
 	}
 })
 
-const Post = mongoose.model('Post', postSchema)
+const PostModel = mongoose.model('Post', postSchema)
 
-crud
-	.store(Post, {
-		title: 'example title 10',
-		body: 'example body 10',
-		user: '5ea3cf889af8292b1c6c381e'
-	})
-	.then((d) => console.log(d))
+// update(UserModel, { _id: '5ea5487fa586ab2c54e14f27' })
+// 	.then((d) => console.log(d))
+// 	.catch((e) => console.log(e.message))
 
-qc.index(Post, 'user').then((doc) =>
-	console.log(JSON.stringify(doc, undefined, 4))
-)
-qc.update(
-	Post,
-	{ _id: '5ea3d1161edcf540e49bc2f5' },
-	{
-		title: 'title updated'
-	}
-).then((doc) => console.log(doc))
+// qc.store(UserModel).then(d => console.log(d))
 
-qc.destroy(User, {
-	username: 'unknownuser'
-}).then((doc) => {
-	console.log(doc)
-})
+// store(PostModel, { title: 'post1', published: true }).then((d) => {
+// 	console.log(d)
+// })
 
-qc.index(User).then((doc) => console.log(doc))
+// qc.index(PostModel).then((d) => {
+// 	console.log(d)
+// })
+
+// update(
+// 	PostModel,
+// 	{ _id: '5ea59d3d008bb81c84e287de' },
+// 	{ published: false }
+// ).then((d) => {
+// 	console.log(d)
+// })
+
+// destroyAll(PostModel, { published: false })
+// 	.then((d) => {
+// 		console.log(d)
+// 	})
+// 	.catch((e) => console.log(e.message))
