@@ -1,4 +1,4 @@
-# Quick crud
+# QuickCrud.js
 
 An easy CRUD operation based on Factory pattern with [Mongoose](https://mongoosejs.com). There are four CRUD operations we can do:
 
