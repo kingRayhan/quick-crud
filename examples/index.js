@@ -1,9 +1,5 @@
 const mongoose = require('mongoose')
-// const index = require('../dist/index')
-// const destroy = require('../dist/destroy')
-// const show = require('../dist/show')
-// const store = require('../dist/store')
-// const update = require('../dist/update')
+
 const qc = require('../dist/quick-crud')
 
 // let dbURL = 'mongodb://rayhan:rayhan123@ds253284.mlab.com:53284/blogapi'

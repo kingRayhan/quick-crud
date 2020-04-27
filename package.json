@@ -26,8 +26,5 @@
 		"jsdoc-to-markdown": "^5.0.3",
 		"mongoose": "^5.9.10",
 		"typescript": "^3.8.3"
-	},
-	"dependencies": {
-		"uuid": "^7.0.3"
 	}
 }
