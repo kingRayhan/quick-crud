@@ -2,7 +2,7 @@
 
 An easy CRUD operation based on Factory pattern with [Mongoose](https://mongoosejs.com). There are four CRUD operations we can do:
 
-- **`index({mode, where, populateOptions, paginationOptions})`** : Fetch all documents with pagination.
+- **`index({model, where, populateOptions, paginationOptions})`** : Fetch all documents with pagination.
 
   - `model` - Mongoose model.
   - `where` - MongoDB filter object.
