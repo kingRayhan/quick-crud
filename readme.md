@@ -1,5 +1,18 @@
 # QuickCrud.js
 
+
+**Installation**
+```bash
+npm i quick-crud
+```
+
+or
+
+```bash
+yarn add quick-crud
+```
+
+
 An easy CRUD operation based on Factory pattern with [Mongoose](https://mongoosejs.com). There are four CRUD operations we can do:
 
 - **`index({model, where, populateOptions, paginationOptions})`** : Fetch all documents with pagination.
