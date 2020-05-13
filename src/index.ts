@@ -1,6 +1,6 @@
-import * as mongoose from 'mongoose'
-import { PaginationOptions } from './utils/interfaces'
-import ResourceList from './utils/ResourceList'
+import * as mongoose from "mongoose";
+import { PaginationOptions } from "./utils/interfaces";
+import ResourceList from "./utils/ResourceList";
 
 /**
  * @typedef {import("mongoose").Model} MongooseModel
@@ -19,37 +19,42 @@ import ResourceList from './utils/ResourceList'
  * @param {MongooseModel} Model - Mongoose Model reference
  * @param {object} where - Mongoose filter object
  * @param {PaginationOptions} paginationOptions - Resource PaginationOptions
- * @param {string} populateOption - Population schema properties seperated by space
+ * @param {string} populateOptions - Population schema properties seperated by space
  * @return {object} - return resources
  *
  * @author KingRayhan <me@rayhan.info>
  */
-const index = async (
-	Model: mongoose.Model<any>,
-	where: mongoose.MongooseFilterQuery<any>,
-	paginationOptions: PaginationOptions = {},
-	populateOption: string
-) => {
-	let query = Model.find(where)
-	if (populateOption) query.populate(populateOption)
+const index = async ({
+  model,
+  where = {},
+  paginationOptions,
+  populateOptions,
+}: {
+  model: mongoose.Model<any>;
+  where?: mongoose.MongooseFilterQuery<any>;
+  paginationOptions?: PaginationOptions;
+  populateOptions?: mongoose.QueryPopulateOptions;
+}) => {
+  let query = model.find(where);
+  if (populateOptions) query.populate(populateOptions);
 
-	const resourceCount = await Model.countDocuments(where)
-	const pageCount =
-		Math.ceil(resourceCount / (paginationOptions.limit || 10)) ?? 1
+  const resourceCount = await model.countDocuments(where);
+  const pageCount =
+    Math.ceil(resourceCount / (paginationOptions?.limit || 10)) || 1;
 
-	let dataHelper = new ResourceList(query, paginationOptions)
-		.sortData()
-		.limitedData()
-		.pagination()
+  let dataHelper = new ResourceList(query, paginationOptions)
+    .sortData()
+    .limitedData()
+    .pagination();
 
-	let data = await dataHelper.getQuery()
+  let data = await dataHelper.getQuery();
 
-	return {
-		currentPage: dataHelper.getCurrentPage(),
-		pageCount,
-		resourceCount,
-		data
-	}
-}
+  return {
+    currentPage: dataHelper.getCurrentPage(),
+    pageCount,
+    resourceCount,
+    data,
+  };
+};
 
-export default index
+export default index;

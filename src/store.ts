@@ -1,4 +1,4 @@
-import * as mongoose from 'mongoose'
+import * as mongoose from "mongoose";
 
 /**
  * @typedef {import("mongoose").Model} MongooseModel
@@ -6,13 +6,14 @@ import * as mongoose from 'mongoose'
 
 /**
  * Create a document
- * @param {MongooseModel} Model - mongoose Model reference
- * @param {object} data - An object of data to store in MongoDB based on Mongoose Schema
+ * @param {object} obj
+ * @param {MongooseModel} obj.model - mongoose Model reference
+ * @param {object} obj.data - An object of data to store in MongoDB based on Mongoose Schema
  *
  * @author KingRayhan <me@rayhan.info>
  */
-const store = (Model: mongoose.Model<any>, data: any): any => {
-	return Model.create(data)
-}
+const store = ({ model, data }: { model: mongoose.Model<any>; data: any }) => {
+  return model.create(data);
+};
 
-export default store
+export default store;
