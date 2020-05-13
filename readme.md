@@ -1,36 +1,49 @@
 # QuickCrud.js
 
+
+**Installation**
+```bash
+npm i quick-crud
+```
+
+or
+
+```bash
+yarn add quick-crud
+```
+
+
 An easy CRUD operation based on Factory pattern with [Mongoose](https://mongoosejs.com). There are four CRUD operations we can do:
 
-- **`index(Model, where, populateOptions, paginationOptions)`** : Fetch all documents with pagination.
+- **`index({model, where, populateOptions, paginationOptions})`** : Fetch all documents with pagination.
 
-  - `Model` - Mongoose model.
+  - `model` - Mongoose model.
   - `where` - MongoDB filter object.
   - `populateOptions` - Mongoose population object/string.
-  - `paginationOptions` can get three parameters. 
-  	- `limit:number` - Resource count to show. Default is 10 
-	- `page:number` - Pagination page number. Default is 1. 
-	- `sort:string` - MongoDB property sort key. Default is `'-createdAt'`
+  - `paginationOptions` can get three parameters.
+    - `limit:number` - Resource count to show. Default is 10
+    - `page:number` - Pagination page number. Default is 1.
+    - `sort:string` - MongoDB property sort key. Default is `'-createdAt'`
 
-- **`store(Model, data)`** - You can create a doc and store it to MongoDB.
-	- `Model` - Mongoose model.
-	- `data` - An object of data to store in MongoDB based on Mongoose Schema
+- **`store({model, data})`** - You can create a doc and store it to MongoDB.
+  - `model` - Mongoose model.
+  - `data` - An object of data to store in MongoDB based on Mongoose Schema
 
-- **`show(Model, where, populationOptions)`**: Fetch a single document via filter key.
-  - `Model` - Mongoose model.
+- **`show({model, where, populationOptions})`**: Fetch a single document via filter key.
+  - `model` - Mongoose model.
   - `where` - MongoDB filter object.
   - `populateOptions` - Mongoose population object/string.
 
-- **`update(Model, where, data)`** - updates the first document that matches `where`. `data` is the object where you want to update the data.
-  - `Model` - Mongoose model.
+- **`update({model, where, data})`** - updates the first document that matches `where`. `data` is the object where you want to update the data.
+  - `model` - Mongoose model.
   - `where` - MongoDB filter object.
   - `data` - An object of data to update that matches with where filter key(s).
 
-- **`destroy(Model, where)`** - Deletes the first documents that matches `where` from the collection. it returns the document that has been deleted.
-  - `Model` - Mongoose model.
+- **`destroy({model, where})`** - Deletes the first documents that matches `where` from the collection. it returns the document that has been deleted.
+  - `model` - Mongoose model.
   - `where` - MongoDB filter object.
-- **`destroyAll(Model, where)`** - Deletes all documents that matches `where` from the collection.
-  - `Model` - Mongoose model.
+- **`destroyAll({model: where})`** - Deletes all documents that matches `where` from the collection.
+  - `model` - Mongoose model.
   - `where` - MongoDB filter object.
 
 ## Examples
@@ -40,10 +53,10 @@ An easy CRUD operation based on Factory pattern with [Mongoose](https://mongoose
 ```js
 const qc = require('quick-crud')
 
-qc.store(UserModel, {
+qc.store({model: UserModel, data: {
 	name: 'John',
 	username: 'johnDoe'
-}).then((d) => console.log(d))
+}}).then((d) => console.log(d))
 ```
 
 **Example Response**
@@ -66,7 +79,7 @@ Fetch all resources with pagination
 ```js
 const qc = require('quick-crud')
 
-qc.index(UserModel).then((doc) => {
+qc.index({model: UserModel}).then((doc) => {
 	console.log(doc)
 })
 ```
@@ -101,10 +114,10 @@ qc.index(UserModel).then((doc) => {
 ```js
 const qc = require('quick-crud')
 
-qc.index(PostModel, {}, {
+qc.index({model: PostModel, paginationOptions: {
 	page: 2,
 	limit: 5
-} , 'user').then((doc) => {
+} , populationOptions: {path : 'user'}}).then((doc) => {
 	console.log(doc)
 })
 ```
@@ -149,10 +162,10 @@ qc.index(PostModel, {}, {
 
 **Fetch all posts those are published**
 ```js
-qc.index(PostModel, { published: true }, {
+qc.index({model: PostModel, where: { published: true }, paginationOptions: {
 	page: 2,
 	limit: 5
-}).then((doc) => {
+}}).then((doc) => {
 	console.log(doc)
 })
 ```
@@ -195,11 +208,11 @@ qc.index(PostModel, { published: true }, {
 const qc = require('quick-crud')
 
 qc.update(
-	Post,
-	{ _id: 'xxxx' },
-	{
+{	model: Post,
+	where: { _id: 'xxxx' },
+  	data: {
 		title: 'title updated'
-	}
+	}}
 ).then((doc) => console.log(doc))
 ```
 
@@ -222,9 +235,9 @@ qc.update(
 ```js
 const qc = require('quick-crud')
 
-qc.destroy(User, {
+qc.destroy({model: User, where: {
 	username: 'newusername'
-}).then((doc) => {
+}}).then((doc) => {
 	console.log(doc)
 })
 ```

@@ -1,9 +1,7 @@
 import * as mongoose from "mongoose";
-
 /**
  * @typedef {import("mongoose").Model} MongooseModel
  */
-
 /**
  * Create a document
  * @param {object} obj
@@ -12,8 +10,8 @@ import * as mongoose from "mongoose";
  *
  * @author KingRayhan <me@rayhan.info>
  */
-const store = ({ model, data }: { model: mongoose.Model<any>; data: any }) => {
-  return model.create(data);
-};
-
+declare const store: ({ model, data }: {
+    model: mongoose.Model<any, {}>;
+    data: any;
+}) => Promise<any>;
 export default store;

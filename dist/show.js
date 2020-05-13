@@ -1,5 +1,5 @@
-import * as mongoose from "mongoose";
-
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 /**
  * Fetching single Resource
  * @param {object} obj
@@ -10,16 +10,10 @@ import * as mongoose from "mongoose";
  *
  * @author KingRayhan <me@rayhan.info>
  */
-const show = ({
-  model,
-  where = {},
-  populateOptions,
-}: {
-  model: mongoose.Model<any>;
-  where: mongoose.FilterQuery<any>;
-  populateOptions?: mongoose.QueryPopulateOptions;
-}) => {
-  return model.findOne(where).populate(populateOptions);
+var show = function (_a) {
+    var model = _a.model, _b = _a.where, where = _b === void 0 ? {} : _b, populateOptions = _a.populateOptions;
+    return model.findOne(where).populate(populateOptions);
 };
 //: mongoose.Query<any>
-export default show;
+exports.default = show;
+//# sourceMappingURL=show.js.map

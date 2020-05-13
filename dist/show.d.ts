@@ -1,5 +1,4 @@
 import * as mongoose from "mongoose";
-
 /**
  * Fetching single Resource
  * @param {object} obj
@@ -10,16 +9,9 @@ import * as mongoose from "mongoose";
  *
  * @author KingRayhan <me@rayhan.info>
  */
-const show = ({
-  model,
-  where = {},
-  populateOptions,
-}: {
-  model: mongoose.Model<any>;
-  where: mongoose.FilterQuery<any>;
-  populateOptions?: mongoose.QueryPopulateOptions;
-}) => {
-  return model.findOne(where).populate(populateOptions);
-};
-//: mongoose.Query<any>
+declare const show: ({ model, where, populateOptions, }: {
+    model: mongoose.Model<any, {}>;
+    where: mongoose.MongooseFilterQuery<Pick<any, string | number | symbol>>;
+    populateOptions?: mongoose.QueryPopulateOptions | undefined;
+}) => mongoose.DocumentQuery<any, any, {}>;
 export default show;

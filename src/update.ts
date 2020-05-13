@@ -1,6 +1,6 @@
-import * as mongoose from 'mongoose'
-import { removeUndefinedKeys } from './utils/helpers'
-import { QuickCrudException } from './utils/QuickCrudError'
+import * as mongoose from "mongoose";
+import { removeUndefinedKeys } from "./utils/helpers";
+import { QuickCrudException } from "./utils/QuickCrudError";
 
 /**
  * Update a Resource
@@ -9,23 +9,27 @@ import { QuickCrudException } from './utils/QuickCrudError'
  * @param {object} data - An object of data to update in MongoDB based on Mongoose Schema
  * @author KingRayhan <me@rayhan.info>
  */
-const update = async (
-	Model: mongoose.Model<any>,
-	where: mongoose.FilterQuery<any> = {},
-	data: any
-): mongoose.Query<any> => {
-	// check if it exists
-	data = removeUndefinedKeys(data)
+const update = async ({
+  model,
+  where,
+  data,
+}: {
+  model: mongoose.Model<any>;
+  where: mongoose.FilterQuery<any>;
+  data: any;
+}): mongoose.Query<any> => {
+  // check if it exists
+  data = removeUndefinedKeys(data);
 
-	let doc = await Model.findOneAndUpdate(where, data, {
-		new: true
-	})
+  let doc = await model.findOneAndUpdate(where, data, {
+    new: true,
+  });
 
-	if (!doc) {
-		throw new QuickCrudException('Resource not found')
-	}
-	// update that
-	return doc
-}
+  if (!doc) {
+    throw new QuickCrudException("Resource not found");
+  }
+  // update that
+  return doc;
+};
 
-export default update
+export default update;

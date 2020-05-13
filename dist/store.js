@@ -1,9 +1,8 @@
-import * as mongoose from "mongoose";
-
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 /**
  * @typedef {import("mongoose").Model} MongooseModel
  */
-
 /**
  * Create a document
  * @param {object} obj
@@ -12,8 +11,9 @@ import * as mongoose from "mongoose";
  *
  * @author KingRayhan <me@rayhan.info>
  */
-const store = ({ model, data }: { model: mongoose.Model<any>; data: any }) => {
-  return model.create(data);
+var store = function (_a) {
+    var model = _a.model, data = _a.data;
+    return model.create(data);
 };
-
-export default store;
+exports.default = store;
+//# sourceMappingURL=store.js.map
