@@ -4,7 +4,7 @@ import * as mongoose from "mongoose";
  * Fetching single Resource
  * @param {object} obj
  * @param {MongooseModel} model - mongoose Model reference
- * @param {import("mongoose").QueryPopulateOptions} populateOption - Population schema properties seperated by space
+ * @param {import("mongoose").QueryPopulateOptions} populateOptions - Population schema properties seperated by space
  * @param {import("mongoose").FilterQuery} where - MongoDB filter object
  * @return {import("mongoose").Query} - return a single resource
  *
@@ -13,13 +13,13 @@ import * as mongoose from "mongoose";
 const show = ({
   model,
   where = {},
-  populateOption,
+  populateOptions,
 }: {
   model: mongoose.Model<any>;
   where: mongoose.FilterQuery<any>;
-  populateOption: mongoose.QueryPopulateOptions;
+  populateOptions?: mongoose.QueryPopulateOptions;
 }) => {
-  return model.findOne(where).populate(populateOption);
+  return model.findOne(where).populate(populateOptions);
 };
 //: mongoose.Query<any>
 export default show;

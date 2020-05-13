@@ -2,12 +2,12 @@
   "name": "quick-crud",
   "version": "0.2.0",
   "description": "A quick mongoose crud helper",
-  "main": "dist/index.js",
+  "main": "dist/quick-crud.js",
   "scripts": {
     "dev": "tsc --watch",
     "prepublish": "tsc --declaration",
     "test": "nodemon examples/index.js",
-    "doc": "jsdoc dist/index.js"
+    "doc": "jsdoc dist/quick-crud.js"
   },
   "author": {
     "name": "kingRayhan",
@@ -17,7 +17,7 @@
   "repository": {
     "url": "https://github.com/kingRayhan/quick-crud"
   },
-  "types": "./dist/index.d.ts",
+  "types": "./dist/quick-crud.d.ts",
   "license": "ISC",
   "devDependencies": {
     "@types/mongoose": "^5.7.12",

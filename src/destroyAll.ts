@@ -7,11 +7,11 @@ import * as mongoose from 'mongoose'
  * @param {MongooseModel} Model - mongoose Model reference
  * @param {import("mongoose").FilterQuery} where - MongoDB filter object
  */
-const destroyAll = async (
-	Model: mongoose.Model<any>,
-	where: mongoose.FilterQuery<any> = {}
-) => {
-	return Model.deleteMany(where)
+const destroyAll = ( {model, where = {}} : {
+	model: mongoose.Model<any>,
+	where: mongoose.FilterQuery<any> 
+}) => {
+	return model.deleteMany(where)
 }
 
 export default destroyAll
