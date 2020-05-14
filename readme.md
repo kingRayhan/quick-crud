@@ -1,5 +1,11 @@
 # QuickCrud.js
 
+![](https://img.shields.io/npm/dt/quick-crud)
+![](https://img.shields.io/bundlephobia/minzip/quick-crud)
+![](https://img.shields.io/github/repo-size/kingrayhan/quick-crud)
+![](https://img.shields.io/github/issues/kingrayhan/quick-crud)
+![](https://img.shields.io/github/license/kingrayhan/quick-crud)
+
 
 **Installation**
 ```bash
