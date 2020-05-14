@@ -1,15 +1,19 @@
-import * as mongoose from 'mongoose'
+import { Model, FilterQuery } from 'mongoose'
 
 /**
- * Delete all documents that matches where keys
- * @author KingRayhan <me@rayhan.info>
+ * Deletes all documents that matches `where` from the collection.
+ * @param obj.model  Mongoose Model reference
+ * @param obj.where  MongoDB filter object
  *
- * @param {MongooseModel} Model - mongoose Model reference
- * @param {import("mongoose").FilterQuery} where - MongoDB filter object
+ * @since 0.2.1
+ * @author KingRayhan <me@rayhan.info>
  */
-const destroyAll = ( {model, where = {}} : {
-	model: mongoose.Model<any>,
-	where: mongoose.FilterQuery<any> 
+const destroyAll = ({
+	model,
+	where = {}
+}: {
+	model: Model<any>
+	where: FilterQuery<any>
 }) => {
 	return model.deleteMany(where)
 }

@@ -1,14 +1,17 @@
-import * as mongoose from "mongoose";
+import { Document, Model } from 'mongoose';
 /**
- * Delete a Resource
+ * Deletes the first documents that matches where from the collection.
+ * it returns the document that has been deleted.
+
+ *
+ * @param obj.model  Mongoose Model reference
+ * @param obj.where  MongoDB filter object
+ *
+ * @since 0.2.1
  * @author KingRayhan <me@rayhan.info>
- * @param {object} obj
- * @param {MongooseModel} obj.model - mongoose Model reference
- * @param {import("mongoose").FilterQuery} obj.where - MongoDB filter object
- * @param {object} data - data object for delete
  */
-declare const destroy: ({ model, where, }: {
-    model: mongoose.Model<any, {}>;
-    where: mongoose.MongooseFilterQuery<Pick<any, string | number | symbol>>;
-}) => Promise<any>;
+declare const destroy: (obj: {
+    model: Model<any, {}>;
+    where: import("mongoose").MongooseFilterQuery<Pick<any, string | number | symbol>>;
+}) => Promise<Document>;
 export default destroy;

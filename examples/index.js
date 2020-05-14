@@ -1,33 +1,33 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose')
 
-const qc = require("../dist/quick-crud");
+const qc = require('../dist/quick-crud')
 
 // let dbURL = 'mongodb://rayhan:rayhan123@ds253284.mlab.com:53284/blogapi'
 
 mongoose.connect(dbURL, {
-  useUnifiedTopology: true,
-  useNewUrlParser: true,
-  useCreateIndex: true,
-  useFindAndModify: false,
-});
+	useUnifiedTopology: true,
+	useNewUrlParser: true,
+	useCreateIndex: true,
+	useFindAndModify: false
+})
 
 const userScehama = new mongoose.Schema({
-  name: String,
-  username: String,
-});
-const UserModel = mongoose.model("User", userScehama);
+	name: String,
+	username: String
+})
+const UserModel = mongoose.model('User', userScehama)
 
 const postSchema = new mongoose.Schema({
-  title: String,
-  body: String,
-  published: Boolean,
-  user: {
-    type: mongoose.SchemaTypes.ObjectId,
-    ref: "User",
-  },
-});
+	title: String,
+	body: String,
+	published: Boolean,
+	user: {
+		type: mongoose.SchemaTypes.ObjectId,
+		ref: 'User'
+	}
+})
 
-const PostModel = mongoose.model("Post", postSchema);
+const PostModel = mongoose.model('Post', postSchema)
 
 // update(UserModel, { _id: '5ea5487fa586ab2c54e14f27' })
 // 	.then((d) => console.log(d))

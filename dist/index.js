@@ -41,22 +41,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var ResourceList_1 = __importDefault(require("./utils/ResourceList"));
 /**
- * @typedef {import("mongoose").Model} MongooseModel
- */
-/**
- * Quick crud resource PaginationOptions
- * @typedef {object} PaginationOptions
- * @property {number} [page] - Pagination page number. Default is 1.
- * @property {number} [limit] - Resource count to show. Default is 10
- * @property {string} [sort] - MongoDB property sort key. Default is -createdAt
- */
-/**
  * Fetching all Resources
- * @param {MongooseModel} Model - Mongoose Model reference
- * @param {object} where - Mongoose filter object
- * @param {PaginationOptions} paginationOptions - Resource PaginationOptions
- * @param {string} populateOptions - Population schema properties seperated by space
- * @return {object} - return resources
+ * @param options.Model - Mongoose Model reference
+ * @param options.where - Mongoose filter object
+ * @param options.paginationOptions - Resource PaginationOptions
+ * @param populateOptions - Mongoose population object/string
  *
  * @author KingRayhan <me@rayhan.info>
  */
@@ -85,7 +74,7 @@ var index = function (_a) {
                             currentPage: dataHelper.getCurrentPage(),
                             pageCount: pageCount,
                             resourceCount: resourceCount,
-                            data: data,
+                            data: data
                         }];
             }
         });

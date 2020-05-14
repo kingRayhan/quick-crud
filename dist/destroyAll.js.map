@@ -1,1 +1,1 @@
-{"version":3,"file":"destroyAll.js","sourceRoot":"","sources":["../src/destroyAll.ts"],"names":[],"mappings":";;AAEA;;;;;;GAMG;AACH,IAAM,UAAU,GAAG,UAAE,EAGpB;QAHqB,gBAAK,EAAE,aAAU,EAAV,+BAAU;IAItC,OAAO,KAAK,CAAC,UAAU,CAAC,KAAK,CAAC,CAAA;AAC/B,CAAC,CAAA;AAED,kBAAe,UAAU,CAAA"}
+{"version":3,"file":"destroyAll.js","sourceRoot":"","sources":["../src/destroyAll.ts"],"names":[],"mappings":";;AAEA;;;;;;;;GAQG;AACH,IAAM,UAAU,GAAG,UAAC,EAMnB;QALA,gBAAK,EACL,aAAU,EAAV,+BAAU;IAKV,OAAO,KAAK,CAAC,UAAU,CAAC,KAAK,CAAC,CAAA;AAC/B,CAAC,CAAA;AAED,kBAAe,UAAU,CAAA"}

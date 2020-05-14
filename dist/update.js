@@ -47,10 +47,14 @@ var mongoose = __importStar(require("mongoose"));
 var helpers_1 = require("./utils/helpers");
 var QuickCrudError_1 = require("./utils/QuickCrudError");
 /**
- * Update a Resource
- * @param {MongooseModel} Model - mongoose Model reference
- * @param {import("mongoose").FilterQuery} where - MongoDB filter object
- * @param {object} data - An object of data to update in MongoDB based on Mongoose Schema
+ * Updates the first document that matches where
+ * `data` is the object where you want to update the data.
+ *
+ * @param obj.model - Mongoose Model reference
+ * @param obj.where - MongoDB filter object
+ * @param obj.data - An object of data to update that matches with where filter key(s)
+ *
+ * @since 0.2.1
  * @author KingRayhan <me@rayhan.info>
  */
 var update = function (_a) {
@@ -63,12 +67,12 @@ var update = function (_a) {
                     // check if it exists
                     data = helpers_1.removeUndefinedKeys(data);
                     return [4 /*yield*/, model.findOneAndUpdate(where, data, {
-                            new: true,
+                            new: true
                         })];
                 case 1:
                     doc = _b.sent();
                     if (!doc) {
-                        throw new QuickCrudError_1.QuickCrudException("Resource not found");
+                        throw new QuickCrudError_1.QuickCrudException('Resource not found');
                     }
                     // update that
                     return [2 /*return*/, doc];

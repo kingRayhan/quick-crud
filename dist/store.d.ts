@@ -1,17 +1,15 @@
-import * as mongoose from "mongoose";
-/**
- * @typedef {import("mongoose").Model} MongooseModel
- */
+import { Model } from 'mongoose';
 /**
  * Create a document
- * @param {object} obj
- * @param {MongooseModel} obj.model - mongoose Model reference
- * @param {object} obj.data - An object of data to store in MongoDB based on Mongoose Schema
+`*
+ * @param obj.model - Mongoose Model reference
+ * @param obj.data - An object of data to store in MongoDB based on Mongoose Schema`
  *
+ * @since 0.2.1
  * @author KingRayhan <me@rayhan.info>
  */
-declare const store: ({ model, data }: {
-    model: mongoose.Model<any, {}>;
+declare const store: (options: {
+    model: Model<any, {}>;
     data: any;
 }) => Promise<any>;
 export default store;

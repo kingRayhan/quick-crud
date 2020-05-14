@@ -1,17 +1,17 @@
-import * as mongoose from "mongoose";
+import { Model, QueryPopulateOptions } from 'mongoose';
 /**
  * Fetching single Resource
- * @param {object} obj
- * @param {MongooseModel} model - mongoose Model reference
- * @param {import("mongoose").QueryPopulateOptions} populateOptions - Population schema properties seperated by space
- * @param {import("mongoose").FilterQuery} where - MongoDB filter object
- * @return {import("mongoose").Query} - return a single resource
  *
+ * @param obj.model - Mongoose Model reference
+ * @param obj.populateOptions - Mongoose population object/string
+ * @param obj.where - MongoDB filter object
+ *
+ * @since 0.2.1
  * @author KingRayhan <me@rayhan.info>
  */
-declare const show: ({ model, where, populateOptions, }: {
-    model: mongoose.Model<any, {}>;
-    where: mongoose.MongooseFilterQuery<Pick<any, string | number | symbol>>;
-    populateOptions?: mongoose.QueryPopulateOptions | undefined;
-}) => mongoose.DocumentQuery<any, any, {}>;
+declare const show: ({ model, where, populateOptions }: {
+    model: Model<any, {}>;
+    where: import("mongoose").MongooseFilterQuery<Pick<any, string | number | symbol>>;
+    populateOptions?: QueryPopulateOptions | undefined;
+}) => import("mongoose").DocumentQuery<any, any, {}>;
 export default show;

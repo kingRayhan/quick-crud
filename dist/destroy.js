@@ -38,31 +38,33 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var QuickCrudError_1 = require("./utils/QuickCrudError");
 /**
- * Delete a Resource
+ * Deletes the first documents that matches where from the collection.
+ * it returns the document that has been deleted.
+
+ *
+ * @param obj.model  Mongoose Model reference
+ * @param obj.where  MongoDB filter object
+ *
+ * @since 0.2.1
  * @author KingRayhan <me@rayhan.info>
- * @param {object} obj
- * @param {MongooseModel} obj.model - mongoose Model reference
- * @param {import("mongoose").FilterQuery} obj.where - MongoDB filter object
- * @param {object} data - data object for delete
  */
-var destroy = function (_a) {
-    var model = _a.model, where = _a.where;
-    return __awaiter(void 0, void 0, void 0, function () {
-        var doc;
-        return __generator(this, function (_b) {
-            switch (_b.label) {
-                case 0: return [4 /*yield*/, model.findOne(where)];
-                case 1:
-                    doc = _b.sent();
-                    if (!doc)
-                        throw new QuickCrudError_1.QuickCrudException("Resource not found");
-                    return [4 /*yield*/, doc.delete()];
-                case 2:
-                    _b.sent();
-                    return [2 /*return*/, doc];
-            }
-        });
+var destroy = function (obj) { return __awaiter(void 0, void 0, void 0, function () {
+    var model, where, doc;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                model = obj.model, where = obj.where;
+                return [4 /*yield*/, model.findOne(where)];
+            case 1:
+                doc = _a.sent();
+                if (!doc)
+                    throw new QuickCrudError_1.QuickCrudException('Resource not found');
+                return [4 /*yield*/, doc.delete()];
+            case 2:
+                _a.sent();
+                return [2 /*return*/, doc];
+        }
     });
-};
+}); };
 exports.default = destroy;
 //# sourceMappingURL=destroy.js.map

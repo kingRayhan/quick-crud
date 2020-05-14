@@ -1,0 +1,363 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>quick-crud</title>
+	<meta name="description" content="Documentation for quick-crud">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">quick-crud</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="globals.html">Globals</a>
+				</li>
+			</ul>
+			<h1>quick-crud</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<a href="#quickcrudjs" id="quickcrudjs" style="color: inherit; text-decoration: none;">
+					<h1>QuickCrud.js</h1>
+				</a>
+				<p><strong>Installation</strong></p>
+				<pre><code class="language-bash">npm i quick-crud</code></pre>
+				<p>or</p>
+				<pre><code class="language-bash">yarn add quick-crud</code></pre>
+				<p>An easy CRUD operation based on Factory pattern with <a href="https://mongoosejs.com">Mongoose</a>. There are four CRUD operations we can do:</p>
+				<ul>
+					<li><p><strong><code>index({model, where, populateOptions, paginationOptions})</code></strong> : Fetch all documents with pagination.</p>
+						<ul>
+							<li><code>model</code> - Mongoose model.</li>
+							<li><code>where</code> - MongoDB filter object.</li>
+							<li><code>populateOptions</code> - Mongoose population object/string.</li>
+							<li><code>paginationOptions</code> can get three parameters.<ul>
+									<li><code>limit:number</code> - Resource count to show. Default is 10</li>
+									<li><code>page:number</code> - Pagination page number. Default is 1.</li>
+									<li><code>sort:string</code> - MongoDB property sort key. Default is <code>&#39;-createdAt&#39;</code></li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+					<li><p><strong><code>store({model, data})</code></strong> - You can create a doc and store it to MongoDB.</p>
+						<ul>
+							<li><code>model</code> - Mongoose model.</li>
+							<li><code>data</code> - An object of data to store in MongoDB based on Mongoose Schema</li>
+						</ul>
+					</li>
+					<li><p><strong><code>show({model, where, populationOptions})</code></strong>: Fetch a single document via filter key.</p>
+						<ul>
+							<li><code>model</code> - Mongoose model.</li>
+							<li><code>where</code> - MongoDB filter object.</li>
+							<li><code>populateOptions</code> - Mongoose population object/string.</li>
+						</ul>
+					</li>
+					<li><p><strong><code>update({model, where, data})</code></strong> - updates the first document that matches <code>where</code>. <code>data</code> is the object where you want to update the data.</p>
+						<ul>
+							<li><code>model</code> - Mongoose model.</li>
+							<li><code>where</code> - MongoDB filter object.</li>
+							<li><code>data</code> - An object of data to update that matches with where filter key(s).</li>
+						</ul>
+					</li>
+					<li><p><strong><code>destroy({model, where})</code></strong> - Deletes the first documents that matches <code>where</code> from the collection. it returns the document that has been deleted.</p>
+						<ul>
+							<li><code>model</code> - Mongoose model.</li>
+							<li><code>where</code> - MongoDB filter object.</li>
+						</ul>
+					</li>
+					<li><p><strong><code>destroyAll({model: where})</code></strong> - Deletes all documents that matches <code>where</code> from the collection.</p>
+						<ul>
+							<li><code>model</code> - Mongoose model.</li>
+							<li><code>where</code> - MongoDB filter object.</li>
+						</ul>
+					</li>
+				</ul>
+				<a href="#examples" id="examples" style="color: inherit; text-decoration: none;">
+					<h2>Examples</h2>
+				</a>
+				<a href="#store" id="store" style="color: inherit; text-decoration: none;">
+					<h3>Store</h3>
+				</a>
+				<pre><code class="language-js"><span class="hljs-keyword">const</span> qc = <span class="hljs-built_in">require</span>(<span class="hljs-string">'quick-crud'</span>)
+
+qc.store({<span class="hljs-attr">model</span>: UserModel, <span class="hljs-attr">data</span>: {
+    <span class="hljs-attr">name</span>: <span class="hljs-string">'John'</span>,
+    <span class="hljs-attr">username</span>: <span class="hljs-string">'johnDoe'</span>
+}}).then(<span class="hljs-function">(<span class="hljs-params">d</span>) =&gt;</span> <span class="hljs-built_in">console</span>.log(d))</code></pre>
+				<p><strong>Example Response</strong></p>
+				<pre><code class="language-js">{
+  <span class="hljs-attr">_id</span>: <span class="hljs-string">'xxxx'</span>,
+  <span class="hljs-attr">name</span>: <span class="hljs-string">'John'</span>,
+  <span class="hljs-attr">username</span>: <span class="hljs-string">'johnDoe'</span>,
+  <span class="hljs-attr">__v</span>: <span class="hljs-number">0</span>
+}</code></pre>
+				<a href="#index" id="index" style="color: inherit; text-decoration: none;">
+					<h2>Index</h2>
+				</a>
+				<p>Fetch all resources with pagination</p>
+				<p><strong>Fetch all users</strong></p>
+				<pre><code class="language-js"><span class="hljs-keyword">const</span> qc = <span class="hljs-built_in">require</span>(<span class="hljs-string">'quick-crud'</span>)
+
+qc.index({<span class="hljs-attr">model</span>: UserModel}).then(<span class="hljs-function">(<span class="hljs-params">doc</span>) =&gt;</span> {
+    <span class="hljs-built_in">console</span>.log(doc)
+})</code></pre>
+				<p><strong>Response</strong></p>
+				<pre><code class="language-js">{
+  <span class="hljs-attr">currentPage</span>: <span class="hljs-number">1</span>,
+  <span class="hljs-attr">pageCount</span>: <span class="hljs-number">1</span>,
+  <span class="hljs-attr">resourceCount</span>: <span class="hljs-number">4</span>,
+  <span class="hljs-attr">data</span>: [
+    {
+      <span class="hljs-attr">_id</span>: <span class="hljs-string">'xxxxxx'</span>,
+      <span class="hljs-attr">name</span>: <span class="hljs-string">'User 1'</span>,
+      <span class="hljs-attr">username</span>: <span class="hljs-string">'username1'</span>,
+      <span class="hljs-attr">__v</span>: <span class="hljs-number">0</span>
+    },
+    {
+      <span class="hljs-attr">_id</span>: <span class="hljs-string">'xxxxxx'</span>,
+      <span class="hljs-attr">name</span>: <span class="hljs-string">'User 2'</span>,
+      <span class="hljs-attr">username</span>: <span class="hljs-string">'username2'</span>,
+      <span class="hljs-attr">__v</span>: <span class="hljs-number">0</span>
+    },
+    <span class="hljs-comment">//..............</span>
+  ]
+}</code></pre>
+				<p><strong>Fetch all posts with user polulation</strong></p>
+				<pre><code class="language-js"><span class="hljs-keyword">const</span> qc = <span class="hljs-built_in">require</span>(<span class="hljs-string">'quick-crud'</span>)
+
+qc.index({<span class="hljs-attr">model</span>: PostModel, <span class="hljs-attr">paginationOptions</span>: {
+    <span class="hljs-attr">page</span>: <span class="hljs-number">2</span>,
+    <span class="hljs-attr">limit</span>: <span class="hljs-number">5</span>
+} , <span class="hljs-attr">populationOptions</span>: {<span class="hljs-attr">path</span> : <span class="hljs-string">'user'</span>}}).then(<span class="hljs-function">(<span class="hljs-params">doc</span>) =&gt;</span> {
+    <span class="hljs-built_in">console</span>.log(doc)
+})</code></pre>
+				<p><strong>Response</strong></p>
+				<pre><code class="language-json">{
+    <span class="hljs-attr">"currentPage"</span>: <span class="hljs-number">2</span>,
+    <span class="hljs-attr">"pageCount"</span>: <span class="hljs-number">2</span>,
+    <span class="hljs-attr">"resourceCount"</span>: <span class="hljs-number">10</span>,
+    <span class="hljs-attr">"data"</span>: [
+        {
+            <span class="hljs-attr">"_id"</span>: <span class="hljs-string">"xxxx"</span>,
+            <span class="hljs-attr">"title"</span>: <span class="hljs-string">"example title 1"</span>,
+            <span class="hljs-attr">"body"</span>: <span class="hljs-string">"example body 1"</span>,
+            <span class="hljs-attr">"user"</span>: {
+                <span class="hljs-attr">"_id"</span>: <span class="hljs-string">"xxxx"</span>,
+                <span class="hljs-attr">"name"</span>: <span class="hljs-string">"User 1"</span>,
+                <span class="hljs-attr">"username"</span>: <span class="hljs-string">"username1"</span>,
+                <span class="hljs-attr">"__v"</span>: <span class="hljs-number">0</span>
+            },
+            <span class="hljs-attr">"__v"</span>: <span class="hljs-number">0</span>
+        },
+        {
+            <span class="hljs-attr">"_id"</span>: <span class="hljs-string">"xxxx"</span>,
+            <span class="hljs-attr">"title"</span>: <span class="hljs-string">"example title 1"</span>,
+            <span class="hljs-attr">"body"</span>: <span class="hljs-string">"example body 1"</span>,
+            <span class="hljs-attr">"user"</span>: {
+                <span class="hljs-attr">"_id"</span>: <span class="hljs-string">"xxxx"</span>,
+                <span class="hljs-attr">"name"</span>: <span class="hljs-string">"User 2"</span>,
+                <span class="hljs-attr">"username"</span>: <span class="hljs-string">"username2"</span>,
+                <span class="hljs-attr">"__v"</span>: <span class="hljs-number">0</span>
+            },
+            <span class="hljs-attr">"__v"</span>: <span class="hljs-number">0</span>
+        }
+        <span class="hljs-comment">// ........................</span>
+        <span class="hljs-comment">// ........................</span>
+    ]
+}</code></pre>
+				<p><strong>Fetch all posts those are published</strong></p>
+				<pre><code class="language-js">qc.index({<span class="hljs-attr">model</span>: PostModel, <span class="hljs-attr">where</span>: { <span class="hljs-attr">published</span>: <span class="hljs-literal">true</span> }, <span class="hljs-attr">paginationOptions</span>: {
+    <span class="hljs-attr">page</span>: <span class="hljs-number">2</span>,
+    <span class="hljs-attr">limit</span>: <span class="hljs-number">5</span>
+}}).then(<span class="hljs-function">(<span class="hljs-params">doc</span>) =&gt;</span> {
+    <span class="hljs-built_in">console</span>.log(doc)
+})</code></pre>
+				<p><strong>Response</strong></p>
+				<pre><code class="language-js">{
+  <span class="hljs-attr">currentPage</span>: <span class="hljs-number">1</span>,
+  <span class="hljs-attr">pageCount</span>: <span class="hljs-number">1</span>,
+  <span class="hljs-attr">resourceCount</span>: <span class="hljs-number">3</span>,
+  <span class="hljs-attr">data</span>: [
+    {
+      <span class="hljs-attr">_id</span>: <span class="hljs-string">'xxxx'</span>,
+      <span class="hljs-attr">title</span>: <span class="hljs-string">'post1'</span>,
+      <span class="hljs-attr">published</span>: <span class="hljs-literal">true</span>,
+      <span class="hljs-attr">__v</span>: <span class="hljs-number">0</span>
+    },
+    {
+      <span class="hljs-attr">_id</span>: <span class="hljs-string">'xxxx'</span>,
+      <span class="hljs-attr">title</span>: <span class="hljs-string">'post1'</span>,
+      <span class="hljs-attr">published</span>: <span class="hljs-literal">true</span>,
+      <span class="hljs-attr">__v</span>: <span class="hljs-number">0</span>
+    },
+    {
+      <span class="hljs-attr">_id</span>: <span class="hljs-string">'xxxx'</span>,
+      <span class="hljs-attr">title</span>: <span class="hljs-string">'post1'</span>,
+      <span class="hljs-attr">published</span>: <span class="hljs-literal">true</span>,
+      <span class="hljs-attr">__v</span>: <span class="hljs-number">0</span>
+    }
+  ]
+}</code></pre>
+				<a href="#update" id="update" style="color: inherit; text-decoration: none;">
+					<h3>Update</h3>
+				</a>
+				<p><strong>Update a post by id</strong></p>
+				<pre><code class="language-js"><span class="hljs-keyword">const</span> qc = <span class="hljs-built_in">require</span>(<span class="hljs-string">'quick-crud'</span>)
+
+qc.update(
+{    <span class="hljs-attr">model</span>: Post,
+    <span class="hljs-attr">where</span>: { <span class="hljs-attr">_id</span>: <span class="hljs-string">'xxxx'</span> },
+      <span class="hljs-attr">data</span>: {
+        <span class="hljs-attr">title</span>: <span class="hljs-string">'title updated'</span>
+    }}
+).then(<span class="hljs-function">(<span class="hljs-params">doc</span>) =&gt;</span> <span class="hljs-built_in">console</span>.log(doc))</code></pre>
+				<p><strong>Response</strong></p>
+				<pre><code class="language-js">{
+    <span class="hljs-attr">_id</span>: <span class="hljs-string">'xxxx'</span>,
+    <span class="hljs-attr">title</span>: <span class="hljs-string">'title updated'</span>,
+    <span class="hljs-attr">body</span>: <span class="hljs-string">'example body 10'</span>,
+    <span class="hljs-attr">user</span>: <span class="hljs-string">'xxxx'</span>,
+    <span class="hljs-attr">__v</span>: <span class="hljs-number">0</span>
+}</code></pre>
+				<a href="#destroy" id="destroy" style="color: inherit; text-decoration: none;">
+					<h3>Destroy</h3>
+				</a>
+				<p><strong>Delete a user with username</strong></p>
+				<pre><code class="language-js"><span class="hljs-keyword">const</span> qc = <span class="hljs-built_in">require</span>(<span class="hljs-string">'quick-crud'</span>)
+
+qc.destroy({<span class="hljs-attr">model</span>: User, <span class="hljs-attr">where</span>: {
+    <span class="hljs-attr">username</span>: <span class="hljs-string">'newusername'</span>
+}}).then(<span class="hljs-function">(<span class="hljs-params">doc</span>) =&gt;</span> {
+    <span class="hljs-built_in">console</span>.log(doc)
+})</code></pre>
+				<p><strong>Response</strong></p>
+				<pre><code class="language-js">{
+  <span class="hljs-attr">_id</span>: <span class="hljs-string">'xxxx'</span>,
+  <span class="hljs-attr">name</span>: <span class="hljs-string">'new name'</span>,
+  <span class="hljs-attr">__v</span>: <span class="hljs-number">0</span>,
+  <span class="hljs-attr">username</span>: <span class="hljs-string">'newusername'</span>
+}</code></pre>
+				<p><strong>Throws exception if no document found</strong></p>
+				<pre><code class="language-js"><span class="hljs-comment">// Exception</span>
+<span class="hljs-attr">UnhandledPromiseRejectionWarning</span>: QuickCrudException: Resource not found</code></pre>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="globals.html"><em>Globals</em></a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_destroy_.html">&quot;destroy&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_destroyall_.html">&quot;destroy<wbr>All&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_index_.html">&quot;index&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_quick_crud_.html">&quot;quick-<wbr>crud&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_show_.html">&quot;show&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_store_.html">&quot;store&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_update_.html">&quot;update&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_utils_quickcruderror_.html">&quot;utils/<wbr>Quick<wbr>Crud<wbr>Error&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_utils_resourcelist_.html">&quot;utils/<wbr>Resource<wbr>List&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_utils_helpers_.html">&quot;utils/helpers&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_utils_interfaces_.html">&quot;utils/interfaces&quot;</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="assets/js/search.js"><' + '/script>');</script>
+</body>
+</html>
