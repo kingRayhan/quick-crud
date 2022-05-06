@@ -34,6 +34,7 @@ const index = async ({
 		.sortData()
 		.limitedData()
 		.pagination()
+		.projections()
 
 	let data = await dataHelper.getQuery()
 

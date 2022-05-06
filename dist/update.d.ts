@@ -11,8 +11,8 @@ import * as mongoose from 'mongoose';
  * @author KingRayhan <me@rayhan.info>
  */
 declare const update: ({ model, where, data }: {
-    model: mongoose.Model<any, {}>;
-    where: mongoose.MongooseFilterQuery<Pick<any, string | number | symbol>>;
+    model: mongoose.Model<any>;
+    where: mongoose.FilterQuery<any>;
     data: any;
-}) => mongoose.Query<any>;
+}) => any;
 export default update;

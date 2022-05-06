@@ -3,3 +3,6 @@ export interface PaginationOptions {
     limit?: number;
     sort?: string;
 }
+export interface ProjectionOptions {
+    fields?: string;
+}

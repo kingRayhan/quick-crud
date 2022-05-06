@@ -13,6 +13,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.QuickCrudException = void 0;
 var QuickCrudException = /** @class */ (function (_super) {
     __extends(QuickCrudException, _super);
     function QuickCrudException(msg) {

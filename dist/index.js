@@ -41,12 +41,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var ResourceList_1 = __importDefault(require("./utils/ResourceList"));
 /**
- * Fetching all Resources
+ * Fetching all Resources with pagination
  * @param options.Model - Mongoose Model reference
  * @param options.where - Mongoose filter object
  * @param options.paginationOptions - Resource PaginationOptions
  * @param populateOptions - Mongoose population object/string
  *
+ * @since 0.2.1
  * @author KingRayhan <me@rayhan.info>
  */
 var index = function (_a) {
@@ -66,7 +67,8 @@ var index = function (_a) {
                     dataHelper = new ResourceList_1.default(query, paginationOptions)
                         .sortData()
                         .limitedData()
-                        .pagination();
+                        .pagination()
+                        .projections();
                     return [4 /*yield*/, dataHelper.getQuery()];
                 case 2:
                     data = _c.sent();

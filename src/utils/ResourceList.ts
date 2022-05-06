@@ -1,14 +1,16 @@
-import { PaginationOptions } from "./interfaces";
+import { PaginationOptions, ProjectionOptions } from "./interfaces";
 
 class ResourceList {
   private query: any;
   private paginationOptions: PaginationOptions | undefined;
   private currentPage: number;
+  private projectionOptions: ProjectionOptions | undefined
 
-  constructor(query: any, paginationOptions?: PaginationOptions) {
+  constructor(query: any, paginationOptions?: PaginationOptions, projectionOptions?: ProjectionOptions) {
     this.query = query;
     this.paginationOptions = paginationOptions;
     this.currentPage = paginationOptions?.page ?? 1;
+    this.projectionOptions = projectionOptions;
   }
 
   public getQuery(): any {
@@ -18,6 +20,17 @@ class ResourceList {
   public getCurrentPage(): number {
     return this.currentPage;
   }
+
+
+  public projections() {
+    if (this.projectionOptions) {
+      this.query.select(this.projectionOptions)
+    } else {
+      this.query.select('-__v')
+    }
+    return this
+  }
+
 
   public sortData() {
     let sortBy =

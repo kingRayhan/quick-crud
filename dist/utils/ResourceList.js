@@ -1,17 +1,27 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var ResourceList = /** @class */ (function () {
-    function ResourceList(query, paginationOptions) {
+    function ResourceList(query, paginationOptions, projectionOptions) {
         var _a;
         this.query = query;
         this.paginationOptions = paginationOptions;
         this.currentPage = (_a = paginationOptions === null || paginationOptions === void 0 ? void 0 : paginationOptions.page) !== null && _a !== void 0 ? _a : 1;
+        this.projectionOptions = projectionOptions;
     }
     ResourceList.prototype.getQuery = function () {
         return this.query;
     };
     ResourceList.prototype.getCurrentPage = function () {
         return this.currentPage;
+    };
+    ResourceList.prototype.projections = function () {
+        if (this.projectionOptions) {
+            this.query.select(this.projectionOptions);
+        }
+        else {
+            this.query.select('-__v');
+        }
+        return this;
     };
     ResourceList.prototype.sortData = function () {
         var _a, _b, _c;
