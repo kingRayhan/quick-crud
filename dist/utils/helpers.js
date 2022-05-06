@@ -11,7 +11,8 @@ var __assign = (this && this.__assign) || function () {
     return __assign.apply(this, arguments);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.removeUndefinedKeys = function (obj) {
+exports.removeUndefinedKeys = void 0;
+var removeUndefinedKeys = function (obj) {
     var shallowCopyObj = __assign({}, obj);
     Object.keys(shallowCopyObj).forEach(function (key) {
         if (shallowCopyObj[key] === undefined)
@@ -19,4 +20,5 @@ exports.removeUndefinedKeys = function (obj) {
     });
     return shallowCopyObj;
 };
+exports.removeUndefinedKeys = removeUndefinedKeys;
 //# sourceMappingURL=helpers.js.map

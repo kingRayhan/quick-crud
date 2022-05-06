@@ -1,6 +1,6 @@
-import * as mongoose from 'mongoose'
-import { removeUndefinedKeys } from './utils/helpers'
-import { QuickCrudException } from './utils/QuickCrudError'
+import { Query, Model, FilterQuery } from "mongoose";
+import { removeUndefinedKeys } from "./utils/helpers";
+import { QuickCrudException } from "./utils/QuickCrudError";
 
 /**
  * Updates the first document that matches where
@@ -13,27 +13,27 @@ import { QuickCrudException } from './utils/QuickCrudError'
  * @since 0.2.1
  * @author KingRayhan <me@rayhan.info>
  */
-const update = async ({
-	model,
-	where,
-	data
+const update = async <ModelType>({
+  model,
+  where,
+  data,
 }: {
-	model: mongoose.Model<any>
-	where: mongoose.FilterQuery<any>
-	data: any
-}): mongoose.Query<any> => {
-	// check if it exists
-	data = removeUndefinedKeys(data)
+  model: Model<ModelType>;
+  where: FilterQuery<ModelType>;
+  data: any;
+}): Query<ModelType, ModelType> => {
+  // check if it exists
+  data = removeUndefinedKeys(data);
 
-	let doc = await model.findOneAndUpdate(where, data, {
-		new: true
-	})
+  let doc = await model.findOneAndUpdate(where, data, {
+    new: true,
+  });
 
-	if (!doc) {
-		throw new QuickCrudException('Resource not found')
-	}
-	// update that
-	return doc
-}
+  if (!doc) {
+    throw new QuickCrudException("Resource not found");
+  }
+  // update that
+  return doc;
+};
 
-export default update
+export default update;

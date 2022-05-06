@@ -1,19 +1,20 @@
-import * as mongoose from 'mongoose';
-import { PaginationOptions } from './utils/interfaces';
+import * as mongoose from "mongoose";
+import { PaginationOptions } from "./utils/interfaces";
 /**
- * Fetching all Resources
+ * Fetching all Resources with pagination
  * @param options.Model - Mongoose Model reference
  * @param options.where - Mongoose filter object
  * @param options.paginationOptions - Resource PaginationOptions
  * @param populateOptions - Mongoose population object/string
  *
+ * @since 0.2.1
  * @author KingRayhan <me@rayhan.info>
  */
-declare const index: ({ model, where, paginationOptions, populateOptions }: {
-    model: mongoose.Model<any, {}>;
-    where?: mongoose.MongooseFilterQuery<any> | undefined;
+declare const index: ({ model, where, paginationOptions, populateOptions, }: {
+    model: mongoose.Model<any>;
+    where?: any;
     paginationOptions?: PaginationOptions | undefined;
-    populateOptions?: mongoose.QueryPopulateOptions | undefined;
+    populateOptions?: any;
 }) => Promise<{
     currentPage: number;
     pageCount: number;

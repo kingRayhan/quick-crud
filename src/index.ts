@@ -1,6 +1,6 @@
-import * as mongoose from 'mongoose'
-import { PaginationOptions } from './utils/interfaces'
-import ResourceList from './utils/ResourceList'
+import { FilterQuery, Model, PopulateOptions } from "mongoose";
+import { PaginationOptions } from "./utils/interfaces";
+import ResourceList from "./utils/ResourceList";
 
 /**
  * Fetching all Resources with pagination
@@ -12,37 +12,37 @@ import ResourceList from './utils/ResourceList'
  * @since 0.2.1
  * @author KingRayhan <me@rayhan.info>
  */
-const index = async ({
-	model,
-	where = {},
-	paginationOptions,
-	populateOptions
+const index = async <ModelType>({
+  model,
+  where = {},
+  paginationOptions,
+  populateOptions,
 }: {
-	model: mongoose.Model<any>
-	where?: mongoose.MongooseFilterQuery<any>
-	paginationOptions?: PaginationOptions
-	populateOptions?: mongoose.QueryPopulateOptions
+  model: Model<ModelType>;
+  where?: FilterQuery<ModelType>;
+  paginationOptions?: PaginationOptions;
+  populateOptions?: PopulateOptions;
 }) => {
-	let query = model.find(where)
-	if (populateOptions) query.populate(populateOptions)
+  let query = model.find(where);
+  if (populateOptions) query.populate(populateOptions);
 
-	const resourceCount = await model.countDocuments(where)
-	const pageCount =
-		Math.ceil(resourceCount / (paginationOptions?.limit || 10)) || 1
+  const resourceCount = await model.countDocuments(where);
+  const pageCount =
+    Math.ceil(resourceCount / (paginationOptions?.limit || 10)) || 1;
 
-	let dataHelper = new ResourceList(query, paginationOptions)
-		.sortData()
-		.limitedData()
-		.pagination()
+  let dataHelper = new ResourceList(query, paginationOptions)
+    .sortData()
+    .limitedData()
+    .pagination();
 
-	let data = await dataHelper.getQuery()
+  let data = await dataHelper.getQuery();
 
-	return {
-		currentPage: dataHelper.getCurrentPage(),
-		pageCount,
-		resourceCount,
-		data
-	}
-}
+  return {
+    currentPage: dataHelper.getCurrentPage(),
+    pageCount,
+    resourceCount,
+    data,
+  };
+};
 
-export default index
+export default index;

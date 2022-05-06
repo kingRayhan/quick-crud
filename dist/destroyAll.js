@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 /**
  * Deletes all documents that matches `where` from the collection.
- * @param {object} obj Quick Crud options
  * @param obj.model  Mongoose Model reference
  * @param obj.where  MongoDB filter object
  *

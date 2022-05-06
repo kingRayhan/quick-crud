@@ -9,7 +9,7 @@ import { Model } from 'mongoose';
  * @author KingRayhan <me@rayhan.info>
  */
 declare const store: (options: {
-    model: Model<any, {}>;
+    model: Model<any>;
     data: any;
 }) => Promise<any>;
 export default store;

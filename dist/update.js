@@ -35,15 +35,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
-    result["default"] = mod;
-    return result;
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-var mongoose = __importStar(require("mongoose"));
+var mongoose_1 = require("mongoose");
 var helpers_1 = require("./utils/helpers");
 var QuickCrudError_1 = require("./utils/QuickCrudError");
 /**
@@ -59,20 +52,20 @@ var QuickCrudError_1 = require("./utils/QuickCrudError");
  */
 var update = function (_a) {
     var model = _a.model, where = _a.where, data = _a.data;
-    return __awaiter(void 0, void 0, mongoose.Query, function () {
+    return __awaiter(void 0, void 0, mongoose_1.Query, function () {
         var doc;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
                     // check if it exists
-                    data = helpers_1.removeUndefinedKeys(data);
+                    data = (0, helpers_1.removeUndefinedKeys)(data);
                     return [4 /*yield*/, model.findOneAndUpdate(where, data, {
-                            new: true
+                            new: true,
                         })];
                 case 1:
                     doc = _b.sent();
                     if (!doc) {
-                        throw new QuickCrudError_1.QuickCrudException('Resource not found');
+                        throw new QuickCrudError_1.QuickCrudException("Resource not found");
                     }
                     // update that
                     return [2 /*return*/, doc];

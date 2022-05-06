@@ -8,7 +8,8 @@
 		"prepublish": "tsc --declaration",
 		"build": "tsc --declaration",
 		"test": "nodemon examples/index.js",
-		"doc": "typedoc --out docs src"
+		"doc": "typedoc --out docs src",
+		"postinstall": "npm-install-peers"
 	},
 	"author": {
 		"name": "kingRayhan",
@@ -21,9 +22,15 @@
 	"types": "./dist/quick-crud.d.ts",
 	"license": "ISC",
 	"devDependencies": {
-		"@types/mongoose": "^5.7.12",
+		"@types/mongoose": "^5.11.97",
 		"@types/shortid": "0.0.29",
+		"mongoose": "^6.3.2",
+		"npm-install-peers": "^1.2.2",
 		"typedoc": "^0.17.6",
-		"typescript": "^3.8.3"
-	}
+		"typescript": "^4.6.4"
+	},
+	"peerDependencies": {
+		"mongoose": "6.x"
+	},
+	"dependencies": {}
 }
